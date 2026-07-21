@@ -1,50 +1,6 @@
 import { useState } from 'react'
 
-const initialProfile = {
-    general: { name: 'Moe Schmoe', phone: '', email: '', },
-    education: { schoolName: '', titleOfStudy: '', dateFrom: '', dateTo: '', },
-    work: { companyName: '', positionTitle: '', responsibilities: '', dateFrom: '', dateTo: '', },
-};
-
-export default function Form() {
-    const [profile, setProfile] = useState(initialProfile);
-
-    function handleGeneralChange(e) {
-        const { name, value } = e.target;
-
-        setProfile((previousProfile) => ({
-            ...previousProfile,
-            general: {
-                ...previousProfile.general,
-                [name]: value,
-            },
-        }));
-    }
-
-    function handleEducationChange(e) {
-        const { name, value } = e.target;
-
-        setProfile((previousProfile) => ({
-            ...previousProfile,
-            education: {
-                ...previousProfile.education,
-                [name]: value,
-            }
-        }));
-    }
-
-    function handleWorkChange(e) {
-        const {name, value } = e.target;
-
-        setProfile((previousProfile) => ({
-            ...previousProfile,
-            work: {
-                ...previousProfile.work,
-                [name]: value,
-            }
-        }));
-    }
-
+export default function Form({ handleGeneralChange, handleEducationChange, handleWorkChange }) {
     return (
         <form>
             <fieldset>
