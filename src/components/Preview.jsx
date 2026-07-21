@@ -16,6 +16,7 @@ export default function Preview({ profile }) {
         <h2>Work experience</h2>
         <h3>{profile.work.companyName}</h3>
         <p>{profile.work.positionTitle}</p>
+        <p>{profile.work.responsibilities}</p>
         <p>{profile.work.dateFrom} - {profile.work.dateTo}</p>
         </>
     )
