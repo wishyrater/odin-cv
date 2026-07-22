@@ -1,0 +1,71 @@
+h1, h2, h3, p, address, a, span {
+    margin: 0;
+}
+
+.cv-preview {
+    margin: 40px;
+    padding: 20px;
+    background-color: #f0f0f0;
+
+    display: grid;
+}
+
+.cv-general {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cv-general h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.cv-general address {
+    display: flex;
+    gap: 20px;
+}
+
+.cv-educational,
+.cv-work {
+    margin-top: 20px;
+    display: grid;
+}
+
+.cv-educational-entry,
+.cv-work-entry {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+
+    margin-top: 10px;
+}
+
+.cv-educational-entry-details,
+.cv-work-entry-details {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.cv-educational-entry-dates,
+.cv-work-entry-dates {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.cv-educational-entry-school-name,
+.cv-work-entry-company-name {
+    font-weight: bold;
+}
+
+.cv-educational-entry-title-of-study,
+.cv-work-entry-position-title {
+    font-style: italic;
+}
+
+.cv-work-entry-responsibilities {
+    margin-top: 6px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
