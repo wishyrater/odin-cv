@@ -5,8 +5,8 @@ import './App.css'
 
 const initialProfile = {
     general: { name: 'Moe Schmoe', phone: '12345678', email: 'email@email.com', },
-    education: [{ schoolName: 'Abc', titleOfStudy: '123', dateFrom: '12.04.2027', dateTo: '12.04.2027', }],
-    work: [{ companyName: 'Bigger industries inc.', positionTitle: 'Big Dawg', responsibilities: 'Did this', dateFrom: '12.04.2027', dateTo: '12.04.2027', }],
+    education: { schoolName: 'Abc', titleOfStudy: '123', dateFrom: '12.04.2027', dateTo: '12.04.2027', },
+    work: { companyName: 'Bigger industries inc.', positionTitle: 'Big Dawg', responsibilities: 'Did this', dateFrom: '12.04.2027', dateTo: '12.04.2027', },
 };
 
 function App() {
@@ -49,13 +49,13 @@ function App() {
     }
 
 	return (
-    	<>
+    	<main>
 		<Form 
 			handleGeneralChange={handleGeneralChange} 
 			handleEducationChange={handleEducationChange} 
 			handleWorkChange={handleWorkChange}/>
     	<Preview profile={profile} />
-    	</>
+    	</main>
 	)
 }
 

@@ -8,6 +8,10 @@ h1, h2, h3, p, address, a, span {
     background-color: #f0f0f0;
 
     display: grid;
+    grid-auto-rows: max-content;
+    align-content: start;
+
+    max-height: 60vh
 }
 
 .cv-general {

@@ -1,0 +1,30 @@
+.cv-form {
+    background-color: #f0f0f0;
+
+    display: grid;
+}
+
+.general-information-input-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-item {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.input-item input {
+    max-width: 250px;
+}
+
+.input-item input[type="date"] {
+    max-width: 100px;
+}
+
+.input-item textarea {
+    height: 100px;
+    max-width: 400px;
+}

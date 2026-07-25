@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import '../styles/Form.css'
 
 export default function Form({ handleGeneralChange, handleEducationChange, handleWorkChange }) {
     return (
-        <form>
-            <fieldset>
+        <form className="cv-form">
+            <fieldset className='cv-form-fieldset-general'>
                 <legend>General information</legend>
-                <Input name="name" label="Full name" type="text" id={0} onChange={handleGeneralChange}/>
-                <Input name="email" label="Email" type="email" id={1} onChange={handleGeneralChange} />
-                <Input name="phone" label="phone" type="phone" id={2} onChange={handleGeneralChange} />
+                <div className="general-information-input-fields">
+                    <Input name="name" label="Full name" type="text" id={0} onChange={handleGeneralChange}/>
+                    <Input name="email" label="Email" type="email" id={1} onChange={handleGeneralChange} />
+                    <Input name="phone" label="Phone" type="phone" id={2} onChange={handleGeneralChange} />
+                </div>
             </fieldset>
             <fieldset>
                 <legend>Educational experience</legend>
@@ -30,7 +32,7 @@ export default function Form({ handleGeneralChange, handleEducationChange, handl
 
 function Input({ name, label, type, id, onChange }) {
     return (
-        <div>
+        <div className='input-item'>
             <label htmlFor={id}>{label}</label>
             {type === "textarea" ? (
                 <textarea id={id} name={name} onChange={onChange} />
