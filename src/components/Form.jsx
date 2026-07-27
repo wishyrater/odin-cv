@@ -4,7 +4,7 @@ import '../styles/Form.css'
 // TODO: MAKE THE PROFILE INTO A LIST FOR THE EDUCATION AND WORK ENTRIES, THEN USE .MAP TO RENDER THEM HEREEE
 // YOU GOT THIS
 
-export default function Form({ profile, handleGeneralChange, handleEducationChange, handleWorkChange }) {
+export default function Form({ profile, handleGeneralChange, handleEducationChange, handleAddEducation, handleWorkChange, handleAddWork }) {
     return (
         <form className="cv-form">
             <fieldset className='cv-form-fieldset-general'>
@@ -32,7 +32,7 @@ export default function Form({ profile, handleGeneralChange, handleEducationChan
                         />
                     ))}
                 </div>
-                <button type="button">Add education entry</button>
+                <button type="button" onClick={handleAddEducation}>Add education entry</button>
             </fieldset>
             <fieldset>
                 <legend>Work experience</legend>
@@ -49,7 +49,7 @@ export default function Form({ profile, handleGeneralChange, handleEducationChan
                         />
                     ))}
                 </div>
-                <button type="button">Add work entry</button>
+                <button type="button" onClick={handleAddWork}>Add work entry</button>
             </fieldset>
         </form>
     )

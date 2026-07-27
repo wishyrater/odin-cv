@@ -37,6 +37,16 @@ function App() {
         }));
     }
 
+    function handleAddEducation() {
+        setProfile((previousProfile) => ({
+            ...previousProfile,
+            education: [
+                ...previousProfile.education,
+                { id: crypto.randomUUID(), schoolName: "", degree: "", dateFrom: "", dateTo: "" }
+            ]
+        }));
+    }
+
     function handleWorkChange(e, id) {
         const { name, value } = e.target;
 
@@ -50,13 +60,26 @@ function App() {
         }));
     }
 
+    function handleAddWork() {
+        setProfile((previousProfile) => ({
+            ...previousProfile,
+            work: [
+                ...previousProfile.work,
+                { id: crypto.randomUUID(), companyName: "", positionTitle: "", responsibilities: "", dateFrom: "", dateTo: "" }
+            ]
+        }));
+    }
+
 	return (
     	<main>
 		<Form
             profile={profile}
 			handleGeneralChange={handleGeneralChange} 
-			handleEducationChange={handleEducationChange} 
-			handleWorkChange={handleWorkChange}/>
+			handleEducationChange={handleEducationChange}
+            handleAddEducation={handleAddEducation}
+			handleWorkChange={handleWorkChange}
+            handleAddWork={handleAddWork}
+        />
     	<Preview profile={profile} />
     	</main>
 	)
