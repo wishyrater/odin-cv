@@ -1,6 +1,31 @@
 import '../styles/Preview.css'
 
 export default function Preview({ profile }) {
+    const educationItems = profile.education.map(entry => 
+        <div className="cv-educational-entry" key={entry.id}>
+            <div className="cv-educational-entry-details">
+                <p className='cv-educational-entry-school-name'>{entry.schoolName}</p>
+                <p className="cv-educational-entry-title-of-study">{entry.degree}</p>
+            </div>
+            <div className="cv-educational-entry-dates">
+                <p>{entry.dateFrom} - {entry.dateTo}</p>
+            </div>
+        </div>
+    );
+
+    const workItems = profile.work.map(entry =>
+        <div className="cv-work-entry" key={entry.id}>
+            <div className="cv-work-entry-details">
+                <p className='cv-work-entry-company-name'>{entry.companyName}</p>
+                <p className='cv-work-entry-position-title'>{entry.positionTitle}</p>
+                <p className='cv-work-entry-responsibilities'>{entry.responsibilities}</p>
+            </div>
+            <div className="cv-work-entry-dates">
+                <p>{entry.dateFrom} - {entry.dateTo}</p>
+            </div>
+        </div>
+    );
+
     return (
         <div className="cv-preview">
             <div className="cv-general">
@@ -12,28 +37,11 @@ export default function Preview({ profile }) {
             </div>
             <div className="cv-educational">
                 <h2>Educational experience</h2>
-                <div className="cv-educational-entry">
-                    <div className="cv-educational-entry-details">
-                        <p className='cv-educational-entry-school-name'>{profile.education.schoolName}</p>
-                        <p className="cv-educational-entry-title-of-study">{profile.education.titleOfStudy}</p>
-                    </div>
-                    <div className="cv-educational-entry-dates">
-                        <p>{profile.education.dateFrom} - {profile.education.dateTo}</p>
-                    </div>
-                </div>
+                {educationItems}
             </div>
             <div className="cv-work">
                 <h2>Work experience</h2>
-                <div className="cv-work-entry">
-                    <div className="cv-work-entry-details">
-                        <p className='cv-work-entry-company-name'>{profile.work.companyName}</p>
-                        <p className='cv-work-entry-position-title'>{profile.work.positionTitle}</p>
-                        <p className='cv-work-entry-responsibilities'>{profile.work.responsibilities}</p>
-                    </div>
-                    <div className="cv-work-entry-dates">
-                        <p>{profile.work.dateFrom} - {profile.work.dateTo}</p>
-                    </div>
-                </div>
+                {workItems}
             </div>
         </div>
     )

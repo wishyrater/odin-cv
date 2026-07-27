@@ -5,8 +5,8 @@ import './App.css'
 
 const initialProfile = {
     general: { name: 'Moe Schmoe', phone: '12345678', email: 'email@email.com', },
-    education: { schoolName: 'Abc', titleOfStudy: '123', dateFrom: '12.04.2027', dateTo: '12.04.2027', },
-    work: { companyName: 'Bigger industries inc.', positionTitle: 'Big Dawg', responsibilities: 'Did this', dateFrom: '12.04.2027', dateTo: '12.04.2027', },
+    education: [{ id: crypto.randomUUID(), schoolName: 'Abc', degree: '123', dateFrom: '2027-04-12', dateTo: '2027-04-12', }],
+    work: [{ id: crypto.randomUUID(), companyName: 'Bigger industries inc.', positionTitle: 'Big Dawg', responsibilities: 'Did this', dateFrom: '2027-04-12', dateTo: '2027-04-12', }],
 };
 
 function App() {
@@ -24,33 +24,36 @@ function App() {
 		}));
 	}
 
-	function handleEducationChange(e) {
+    function handleEducationChange(e, id) {
         const { name, value } = e.target;
 
         setProfile((previousProfile) => ({
             ...previousProfile,
-            education: {
-                ...previousProfile.education,
-                [name]: value,
-            }
+            education: previousProfile.education.map((entry) => 
+                entry.id === id
+                    ? {...entry, [name]: value }
+                    : entry
+            )
         }));
     }
 
-    function handleWorkChange(e) {
-        const {name, value } = e.target;
+    function handleWorkChange(e, id) {
+        const { name, value } = e.target;
 
         setProfile((previousProfile) => ({
             ...previousProfile,
-            work: {
-                ...previousProfile.work,
-                [name]: value,
-            }
+            work: previousProfile.work.map((entry) => 
+                entry.id === id
+                    ? { ...entry, [name]: value }
+                    : entry
+            )
         }));
     }
 
 	return (
     	<main>
-		<Form 
+		<Form
+            profile={profile}
 			handleGeneralChange={handleGeneralChange} 
 			handleEducationChange={handleEducationChange} 
 			handleWorkChange={handleWorkChange}/>
