@@ -4,7 +4,16 @@ import '../styles/Form.css'
 // TODO: MAKE THE PROFILE INTO A LIST FOR THE EDUCATION AND WORK ENTRIES, THEN USE .MAP TO RENDER THEM HEREEE
 // YOU GOT THIS
 
-export default function Form({ profile, handleGeneralChange, handleEducationChange, handleAddEducation, handleWorkChange, handleAddWork }) {
+export default function Form({ 
+    profile, 
+    handleGeneralChange, 
+    handleEducationChange, 
+    handleAddEducation,
+    handleDeleteEducation, 
+    handleWorkChange, 
+    handleAddWork,
+    handleDeleteWork
+}) {
     return (
         <form className="cv-form">
             <fieldset className='cv-form-fieldset-general'>
@@ -23,12 +32,14 @@ export default function Form({ profile, handleGeneralChange, handleEducationChan
                 <div className="education-input-fields">
                     {profile.education.map(entry => (
                         <EducationEntry
+                            key={entry.id}
                             id={entry.id}
                             schoolName={entry.schoolName}
                             degree={entry.degree}
                             from={entry.dateFrom}
                             to={entry.dateTo}
                             onChange={handleEducationChange}
+                            onDelete={handleDeleteEducation}
                         />
                     ))}
                 </div>
@@ -39,6 +50,7 @@ export default function Form({ profile, handleGeneralChange, handleEducationChan
                 <div className="work-input-fields">
                     {profile.work.map(entry => (
                         <WorkEntry
+                            key={entry.id}
                             id={entry.id}
                             companyName={entry.companyName}
                             positionTitle={entry.positionTitle}
@@ -46,6 +58,7 @@ export default function Form({ profile, handleGeneralChange, handleEducationChan
                             from={entry.dateFrom}
                             to={entry.dateTo}
                             onChange={handleWorkChange}
+                            onDelete={handleDeleteWork}
                         />
                     ))}
                 </div>
@@ -85,7 +98,7 @@ function GeneralEntry({ name, phone, email, onChange }) {
     }
 }
 
-function EducationEntry({ id, schoolName, degree, from, to, onChange }) {
+function EducationEntry({ id, schoolName, degree, from, to, onChange, onDelete }) {
     const [isEditing, setIsEditing] = useState(true);
 
     function handleToggle() {
@@ -94,7 +107,7 @@ function EducationEntry({ id, schoolName, degree, from, to, onChange }) {
 
     if (isEditing) {
         return (
-            <div className='input-item' key={id}>
+            <div className='input-item'>
                 <label htmlFor='schoolName'>School name</label>
                 <input type="text" name="schoolName" id="schoolName" value={schoolName} onChange={(e) => onChange(e, id)} />
                 <label htmlFor="degree">Degree</label>
@@ -104,21 +117,23 @@ function EducationEntry({ id, schoolName, degree, from, to, onChange }) {
                 <label htmlFor="schoolTo">To</label>
                 <input type="date" name="dateTo" id="schoolTo" value={to} onChange={(e) => onChange(e, id)} />
                 <button type="button" onClick={handleToggle}>Submit</button>
+                <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
         )
     } else {
         return (
-            <div className="input-card displayed" key={id}>
+            <div className="input-card displayed">
                 <p>{schoolName}</p>
                 <p>{degree}</p>
                 <p>{from} - {to}</p>
                 <button type="button" onClick={handleToggle}>Edit</button>
+                <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
         )
     }
 }
 
-function WorkEntry({ id, companyName, positionTitle, responsibilities, from, to, onChange }) {
+function WorkEntry({ id, companyName, positionTitle, responsibilities, from, to, onChange, onDelete }) {
     const [isEditing, setIsEditing] = useState(true);
 
     function handleToggle() {
@@ -127,7 +142,7 @@ function WorkEntry({ id, companyName, positionTitle, responsibilities, from, to,
 
     if (isEditing) {
         return (
-            <div className="input-item" key={id}>
+            <div className="input-item">
                 <label htmlFor='companyName'>Company name</label>
                 <input type="text" name="companyName" id="companyName" value={companyName} onChange={(e) => onChange(e, id)} />
                 <label htmlFor="positionTitle">Position title</label>
@@ -138,7 +153,8 @@ function WorkEntry({ id, companyName, positionTitle, responsibilities, from, to,
                 <input type="date" name="workFrom" id="workFrom" value={from} onChange={(e) => onChange(e, id)} />
                 <label htmlFor="workTo">To</label>
                 <input type="date" name="workTo" id="workTo" value={to} onChange={(e) => onChange(e, id)} />
-                <button type="button" onClick={handleToggle}>Submit</button>  
+                <button type="button" onClick={handleToggle}>Submit</button>
+                <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
         )
     } else {
@@ -148,6 +164,7 @@ function WorkEntry({ id, companyName, positionTitle, responsibilities, from, to,
                 <p>{positionTitle}</p>
                 <p>{from} - {to}</p>
                 <button type="button" onClick={handleToggle}>Edit</button>
+                <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
         )
     }

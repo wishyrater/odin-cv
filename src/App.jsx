@@ -47,6 +47,15 @@ function App() {
         }));
     }
 
+    function handleDeleteEducation(id) {
+        setProfile((previousProfile) => ({
+            ...previousProfile,
+            education: previousProfile.education.filter(entry =>
+                entry.id != id
+            )
+        }));
+    }
+
     function handleWorkChange(e, id) {
         const { name, value } = e.target;
 
@@ -70,6 +79,15 @@ function App() {
         }));
     }
 
+    function handleDeleteWork(id) {
+        setProfile((previousProfile) => ({
+            ...previousProfile,
+            work: previousProfile.work.filter(entry =>
+                entry.id != id
+            )
+        }));
+    }
+
 	return (
     	<main>
 		<Form
@@ -77,8 +95,10 @@ function App() {
 			handleGeneralChange={handleGeneralChange} 
 			handleEducationChange={handleEducationChange}
             handleAddEducation={handleAddEducation}
+            handleDeleteEducation={handleDeleteEducation}
 			handleWorkChange={handleWorkChange}
             handleAddWork={handleAddWork}
+            handleDeleteWork={handleDeleteWork}
         />
     	<Preview profile={profile} />
     	</main>
