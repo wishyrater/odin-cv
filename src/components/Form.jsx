@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import '../styles/Form.css'
 
-// TODO: MAKE THE PROFILE INTO A LIST FOR THE EDUCATION AND WORK ENTRIES, THEN USE .MAP TO RENDER THEM HEREEE
-// YOU GOT THIS
-
 export default function Form({ 
     profile, 
     handleGeneralChange, 
@@ -18,16 +15,14 @@ export default function Form({
         <form className="cv-form">
             <fieldset className='cv-form-fieldset-general'>
                 <legend>General information</legend>
-                <div className="general-information-input-fields">
-                    <GeneralEntry 
-                        name={profile.general.name} 
-                        phone={profile.general.phone} 
-                        email={profile.general.email} 
-                        onChange={handleGeneralChange} 
-                    />
-                </div>
+                <GeneralEntry 
+                    name={profile.general.name} 
+                    phone={profile.general.phone} 
+                    email={profile.general.email} 
+                    onChange={handleGeneralChange} 
+                />
             </fieldset>
-            <fieldset>
+            <fieldset className='cv-form-fieldset-education'>
                 <legend>Educational experience</legend>
                 <div className="education-input-fields">
                     {profile.education.map(entry => (
@@ -45,7 +40,7 @@ export default function Form({
                 </div>
                 <button type="button" onClick={handleAddEducation}>Add education entry</button>
             </fieldset>
-            <fieldset>
+            <fieldset className='cv-form-fieldset-work'>
                 <legend>Work experience</legend>
                 <div className="work-input-fields">
                     {profile.work.map(entry => (
@@ -77,19 +72,27 @@ function GeneralEntry({ name, phone, email, onChange }) {
 
     if (isEditing) {
         return (
-            <div>
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" value={name} onChange={onChange} />
-                <label htmlFor="phone">Phone number</label>
-                <input type="phone" name="phone" value={phone} onChange={onChange} />
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={email} onChange={onChange} />
+            <div className="general-entry editing">
+                <div className="general-information-input-fields">
+                    <div className="input-field">
+                        <label htmlFor="name">Name</label>
+                        <input type="text" name="name" value={name} onChange={onChange} />
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="phone">Phone number</label>
+                        <input type="phone" name="phone" value={phone} onChange={onChange} />
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" value={email} onChange={onChange} />
+                    </div>
+                </div>
                 <button type="button" onClick={handleToggle}>Submit</button>
             </div>
         )
     } else {
         return (
-            <div>
+            <div className='general-entry submitted'>
                 <p>{name}</p>
                 <address>{phone}, {email}</address>
                 <button type="button" onClick={handleToggle}>Edit</button>
@@ -107,25 +110,33 @@ function EducationEntry({ id, schoolName, degree, from, to, onChange, onDelete }
 
     if (isEditing) {
         return (
-            <div className='input-item'>
-                <label htmlFor='schoolName'>School name</label>
-                <input type="text" name="schoolName" id="schoolName" value={schoolName} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="degree">Degree</label>
-                <input type="text" name="degree" id="degree" value={degree} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="schoolFrom">From</label>
-                <input type="date" name="dateFrom" id="schoolFrom" value={from} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="schoolTo">To</label>
-                <input type="date" name="dateTo" id="schoolTo" value={to} onChange={(e) => onChange(e, id)} />
+            <div className='education-entry editing'>
+                <div className="input-field schoolName">
+                    <label htmlFor='schoolName'>School name</label>
+                    <input type="text" name="schoolName" id="schoolName" value={schoolName} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field degree">
+                    <label htmlFor="degree">Degree</label>
+                    <input type="text" name="degree" id="degree" value={degree} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field dateFrom">
+                    <label htmlFor="schoolFrom">From</label>
+                    <input type="date" name="dateFrom" id="schoolFrom" value={from} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field dateTo">
+                    <label htmlFor="schoolTo">To</label>
+                    <input type="date" name="dateTo" id="schoolTo" value={to} onChange={(e) => onChange(e, id)} />
+                </div>
                 <button type="button" onClick={handleToggle}>Submit</button>
                 <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
         )
     } else {
         return (
-            <div className="input-card displayed">
-                <p>{schoolName}</p>
-                <p>{degree}</p>
-                <p>{from} - {to}</p>
+            <div className="education-entry submitted">
+                <p className='schoolName'>{schoolName}</p>
+                <p className='degree'>{degree}</p>
+                <p className='dateRange'>{from} - {to}</p>
                 <button type="button" onClick={handleToggle}>Edit</button>
                 <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
@@ -142,27 +153,37 @@ function WorkEntry({ id, companyName, positionTitle, responsibilities, from, to,
 
     if (isEditing) {
         return (
-            <div className="input-item">
-                <label htmlFor='companyName'>Company name</label>
-                <input type="text" name="companyName" id="companyName" value={companyName} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="positionTitle">Position title</label>
-                <input type="text" name="positionTitle" id="positionTitle" value={positionTitle} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="responsibilities">Responsibilities</label>
-                <textarea name="responsibilities" id="responsibilities" value={responsibilities} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="workFrom">From</label>
-                <input type="date" name="workFrom" id="workFrom" value={from} onChange={(e) => onChange(e, id)} />
-                <label htmlFor="workTo">To</label>
-                <input type="date" name="workTo" id="workTo" value={to} onChange={(e) => onChange(e, id)} />
+            <div className="work-entry editing">
+                <div className="input-field companyName">
+                    <label htmlFor='companyName'>Company name</label>
+                    <input type="text" name="companyName" id="companyName" value={companyName} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field positionTitle">
+                    <label htmlFor="positionTitle">Position title</label>
+                    <input type="text" name="positionTitle" id="positionTitle" value={positionTitle} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field responsibilities">
+                    <label htmlFor="responsibilities">Responsibilities</label>
+                    <textarea name="responsibilities" id="responsibilities" value={responsibilities} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field workFrom">
+                    <label htmlFor="workFrom">From</label>
+                    <input type="date" name="dateFrom" id="workFrom" value={from} onChange={(e) => onChange(e, id)} />
+                </div>
+                <div className="input-field workTo">
+                    <label htmlFor="workTo">To</label>
+                    <input type="date" name="dateTo" id="workTo" value={to} onChange={(e) => onChange(e, id)} />
+                </div>
                 <button type="button" onClick={handleToggle}>Submit</button>
                 <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>
         )
     } else {
         return (
-            <div className="display-item" key={id}>
-                <p>{companyName}</p>
-                <p>{positionTitle}</p>
-                <p>{from} - {to}</p>
+            <div className="work-entry submitted">
+                <p className='companyName'>{companyName}</p>
+                <p className='positionTitle'>{positionTitle}</p>
+                <p className='dateRange'>{from} - {to}</p>
                 <button type="button" onClick={handleToggle}>Edit</button>
                 <button type="button" onClick={() => onDelete(id)}>Delete</button>
             </div>

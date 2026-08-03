@@ -1,30 +1,109 @@
 .cv-form {
     background-color: #f0f0f0;
+}
 
+/* general entry styling */
+
+.general-entry {
     display: grid;
+    justify-items: center;
+    gap: 12px;
 }
 
 .general-information-input-fields {
     display: flex;
-    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
 }
 
-.input-item {
-    margin-top: 10px;
-
+.input-field {
     display: flex;
     flex-direction: column;
+    gap: 6px;
 }
 
-.input-item input {
-    max-width: 250px;
+.general-entry .input-field input {
+    width: 200px;
 }
 
-.input-item input[type="date"] {
-    max-width: 100px;
+.general-entry .input-field input[type="phone"] {
+    width: 100px;
 }
 
-.input-item textarea {
+.general-entry button {
+    width: 200px;
+}
+
+/* educational entry styling */
+
+.cv-form-fieldset-education,
+.cv-form-fieldset-work {
+    display: grid;
+    gap: 12px;
+}
+
+.education-input-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    gap: 20px;
+}
+
+.education-entry {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.education-entry.submitted .dateRange,
+.work-entry.submitted .dateRange {
+    grid-column: 1 / 3;
+    justify-self: center;
+}
+
+.education-entry button,
+.work-entry button {
+    width: 150px;
+    justify-self: center;
+}
+
+.cv-form-fieldset-education button,
+.cv-form-fieldset-work button {
+    width: 150px;
+    justify-self: center;
+}
+
+/* work entry styling */
+
+.work-input-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    gap: 20px;
+}
+
+.work-entry {
+    display: grid;
+    align-content: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.input-field.responsibilities {
+    grid-column: 1 / 3;
+}
+
+.input-field.responsibilities textarea {
+    resize: none;
     height: 100px;
-    max-width: 400px;
 }
