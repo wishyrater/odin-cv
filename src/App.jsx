@@ -4,9 +4,9 @@ import Preview from './components/Preview.jsx'
 import './App.css'
 
 const initialProfile = {
-    general: { name: 'Moe Schmoe', phone: '12345678', email: 'email@email.com', },
-    education: [{ id: crypto.randomUUID(), schoolName: 'Abc', degree: '123', dateFrom: '2027-04-12', dateTo: '2027-04-12', }],
-    work: [{ id: crypto.randomUUID(), companyName: 'Bigger industries inc.', positionTitle: 'Big Dawg', responsibilities: 'Did this', dateFrom: '2027-04-12', dateTo: '2027-04-12', }],
+    general: { name: '', phone: '', email: '', },
+    education: [{ id: crypto.randomUUID(), schoolName: '', degree: '', dateFrom: '', dateTo: '', }],
+    work: [{ id: crypto.randomUUID(), companyName: '', positionTitle: '', responsibilities: '', dateFrom: '', dateTo: '', }],
 };
 
 function App() {

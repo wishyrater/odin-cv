@@ -76,15 +76,15 @@ function GeneralEntry({ name, phone, email, onChange }) {
                 <div className="general-information-input-fields">
                     <div className="input-field">
                         <label htmlFor="name">Name</label>
-                        <input type="text" name="name" value={name} onChange={onChange} />
+                        <input autocomplete="name" type="text" name="name" id="name" value={name} onChange={onChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="phone">Phone number</label>
-                        <input type="phone" name="phone" value={phone} onChange={onChange} />
+                        <input autocomplete="tel" type="phone" name="phone" id="phone" value={phone} onChange={onChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" value={email} onChange={onChange} />
+                        <input autocomplete="email" type="email" name="email" id="email" value={email} onChange={onChange} />
                     </div>
                 </div>
                 <button type="button" onClick={handleToggle}>Submit</button>
